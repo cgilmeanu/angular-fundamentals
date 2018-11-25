@@ -2,7 +2,7 @@ import { Passenger } from "./models/passenger.interface";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 
 const PASSENGER_API: string = 'api/passengers';
 
@@ -17,6 +17,15 @@ export class PassengerDashboardService {
             .get(PASSENGER_API)
             .pipe(
                 map(response => response as Passenger[]),
+                catchError((error: any) => throwError(error.json()))
+            );
+    }
+
+    getPassenger(passengerId: number): Observable<Passenger> {
+        return  this.httpClient
+            .get(`${PASSENGER_API}/${passengerId}`)
+            .pipe(
+                map(response => response as Passenger),
                 catchError((error: any) => throwError(error.json()))
             );
     }
