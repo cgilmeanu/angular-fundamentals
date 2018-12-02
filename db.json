@@ -29,11 +29,11 @@
       "baggage": ""
     },
     {
-      "id": 5,
       "fullname": "Tina",
-      "checkedIn": false,
-      "checkInDate": null,
-      "baggage": ""
+      "id": 5,
+      "checkedIn": true,
+      "baggage": "hand-only",
+      "checkInDate": 1543783575926
     }
   ]
 }
